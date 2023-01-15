@@ -1,5 +1,6 @@
 package Zadatak1;
 
+import com.github.javafaker.Faker;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -26,6 +27,19 @@ public class Main {
                 String prezime = cellPrezime.getStringCellValue();
                 System.out.println(ime + " " + prezime);
             }
+
+                for (int i = 5; i < 10; i++){
+                    Faker faker = new Faker();
+                    String ime = faker.name().firstName();
+                    String prezime = faker.name().lastName();
+                    XSSFRow row = sheet.createRow(i);
+                    XSSFCell cellIme = row.createCell(0);
+                    XSSFCell cellPrezime = row.createCell(1);
+                    cellIme.setCellValue(ime);
+                    cellPrezime.setCellValue(prezime);
+                    System.out.println(ime + " " + prezime);
+                }
+
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
